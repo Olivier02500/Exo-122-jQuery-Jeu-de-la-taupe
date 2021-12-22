@@ -2,13 +2,24 @@ const holes = $('.hole');
 const scoreBoard = $('.score');
 const moles = $('.mole');
 
-let timer = 0;
+$('#startGame').click(function (){
+    scoreBoard.text(0);
 
-startGame = function (){
-    holes.toggleClass('up');
-}
+    let gameTime = setInterval(function (){
+            let taupeSpeed = Math.floor(Math.random() * 800 + 200);
+            let item = Math.floor(Math.random() * 6);
+            setTimeout(function (){
+                holes.eq(item).addClass('up');
 
-$('#startGame').click(event => {
+            }, taupeSpeed)
+            holes.removeClass('up');
 
-    startGame()
+
+
+    }, 1000)
+})
+
+moles.click(function (){
+    scoreBoard.text(parseInt(scoreBoard.text()) +1);
+    $(this).parent().removeClass('up');
 })
